@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/tableData.css" />
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet"
+        media="screen">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/tableData.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+    <section>
+        <!--for demo wrap-->
+        <h1>TASK SCHEDULE</h1>
+        <div class="tbl-header">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                    <tr>
+                        <th>
+                            <h4>#</h5>
+                        </th>
+                        <th>
+                            <h5>DESCRIPTION</h5>
+                        </th>
+                        <th>
+                            <h5>DUE DATE</h5>
+                        </th>
+                        <th>
+                            <h5>STATUS</h5>
+                        </th>
+                        <th>
+                            <h5>EDIT</h5>
+                        </th>
+                        <th>
+                            <h5>DELETE</h5>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="tbl-content">
+            <table cellpadding="0" cellspacing="1" border="0" id="tasktable">
+                <tbody>
+
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+
+
+    <!-- follow me template -->
+    <div class="made-with-love">
+        Made with
+        <i>♥</i> by
+        <a target="_blank">Brandon Tabe</a>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="taskModalUpdate" tabindex="-1" role="dialog" aria-labelledby="taskModalUpdateTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="taskTitle">Update Task</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form></form>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input name="id" id="id" class="form-control" id="id" type="hidden" />
+                    </div>
+                    <div class="form-group">
+                        <label for="dueDate">Due Date</label>
+                        <input name="dueDate" id="dueDate" class="form-control" id="dueDate" type="date" />
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="4" id="description"
+                            placeholder="Project Description"></textarea>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="overdue">
+                        <label class="form-check-label" for="overdue">Overdue</label>
+                    </div>
+                </div>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="updateTaskById()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <script src="../js/tableData.js">
+        
+
+
+    </script>
+
+</body>
+
+</html>

@@ -6,7 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,30 +21,34 @@ import za.co.util.DateUtil;
 
 @RestController
 @RequestMapping("/v1/")
-public class TestController {
+public class TaskController {
 
 	@Autowired
 	private TaskRepository taskRepo;
 
+	@CrossOrigin
 	@GetMapping(path = "task")
 	public List<Task> getAllTasks() {
 		return taskRepo.findAll();
 	}
 
+	@CrossOrigin
 	@GetMapping(path = "task/{id}")
 	public Task getTaskById(@PathVariable Integer id) {
 		return taskRepo.findById(id).get();
 	}
 
+	@CrossOrigin
 	@PostMapping(path = "task")
 	public Task createTask(@Valid @RequestBody Task task) {
 		return taskRepo.save(task);
 	}
 
+	@CrossOrigin
 	@PutMapping(path = "task")
 	public Boolean updateTask(@Valid @RequestBody Task task) {
 		Optional<Task> t = taskRepo.findById(task.getId());
-
+		System.out.println(".............................."+task);
 		if (t.isPresent()) {
 			Task updatedTask = t.get();
 			updatedTask.setDescription(task.getDescription());
@@ -55,7 +59,8 @@ public class TestController {
 		return false;
 	}
 
-	@DeleteMapping(path = "task/{id}")
+	@CrossOrigin
+	@GetMapping(path = "task/remove/{id}")
 	public Boolean deleteTask(@PathVariable Integer id) {
 		Optional<Task> t = taskRepo.findById(id);
 		if (t.isPresent()) {
@@ -65,7 +70,7 @@ public class TestController {
 		return false;
 
 	}
-
+	@CrossOrigin
 	@GetMapping(path = "task/status/{id}")
 	public Long checkTaskStatus(@PathVariable Integer id) {
 		String taskDate = taskRepo.findById(id).get().getDueDate().toString();

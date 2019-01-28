@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>HQ TECH - TaskCreation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap core CSS -->
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet"
+    media="screen">
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+
+
+
+</head>
+
+<body>
+
+  <div class="container">
+    <img src="../images/logo.jpg">
+  </div>
+
+  <!-- /.container -->
+  <div class="container">
+
+
+    <fieldset>
+
+      <!-- Form Name -->
+      <legend>Create your task!</legend>
+
+      <!-- Text input-->
+
+      <form method="POST" class="well form-horizontal" id="taskform">
+        <div class="form-group">
+          <label class="col-md-4 control-label">Due Date</label>
+          <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+              <input name="dueDate" class="form-control" id="dueDate" type="date">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label">Task Description</label>
+          <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+              <textarea class="form-control" name="description" rows="4" id="description" placeholder="Project Description"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Button -->
+        <div class="form-group">
+          <label class="col-md-4 control-label"></label>
+          <div class="col-md-4">
+            <button class="btn btn-warning">Create Task<span class="glyphicon glyphicon-send"></span></button>
+          </div>
+        </div>
+      </form>
+      <!-- Success message -->
+      <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i></div>
+
+
+    </fieldset>
+
+  </div>
+  </div><!-- /.container -->
+
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+  <script>
+    $("#taskform").submit(function (event) {
+      event.preventDefault();
+      dueDate = $("#dueDate").val();
+      description = $("#description").val();
+
+      var task = {
+        description: description,
+        dueDate: dueDate,
+        overdue: false
+      };
+
+      $.ajax({
+        url: 'http://localhost:9000/v1/task/',
+        dataType: 'json',
+        type: 'post',
+        contentType: 'application/json',
+        data: JSON.stringify(task),
+        success: function (data, textStatus, jQxhr) {
+          dueDate = $("#dueDate").val('');
+          description = $("#description").val('');
+          console.log(data);
+        },
+        error: function (jqXhr, textStatus, errorThrown) {
+          console.log(errorThrown);
+        }
+      });
+
+    });
+  </script>
+</body>
+
+</html>
